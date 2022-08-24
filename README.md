@@ -2,7 +2,9 @@
 
 ![Screenshot](/images/screenshot.png)
 
-(*FIXME: In one or two paragraphs, describe what the extension does and why one would download it. *)
+This is an ad-on Extension for [de.systopia.eventmessages](https://github.com/systopia/de.systopia.eventmessages). It lets you configure a default Event Template on the settings page and if activated automatically copies the eventmessage config to the new event.
+
+This way if a lot of similar Events are created and the normal Event templates aren't used eventmessages is active by default.
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
