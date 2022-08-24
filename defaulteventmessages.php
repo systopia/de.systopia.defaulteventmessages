@@ -1,4 +1,17 @@
 <?php
+/*-------------------------------------------------------+
+| SYSTOPIA Defaulteventmessages                          |
+| Copyright (C) 2022 SYSTOPIA                            |
+| Author: P. Batroff (batroff@systopia.de)               |
++--------------------------------------------------------+
+| This program is released as free software under the    |
+| Affero GPL license. You can redistribute it and/or     |
+| modify it under the terms of this license which you    |
+| can read by viewing the included agpl.txt or online    |
+| at www.gnu.org/licenses/agpl.html. Removal of this     |
+| copyright header is strictly prohibited without        |
+| written permission from the original author(s).        |
++--------------------------------------------------------*/
 
 require_once 'defaulteventmessages.civix.php';
 // phpcs:disable
@@ -77,6 +90,32 @@ function defaulteventmessages_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL
  */
 function defaulteventmessages_civicrm_entityTypes(&$entityTypes) {
   _defaulteventmessages_civix_civicrm_entityTypes($entityTypes);
+}
+
+/**
+ * Implements hook_civicrm_post().
+ *
+ * @ink https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_post/
+ */
+function defaulteventmessages_civicrm_post($op, $objectName, $objectId, &$objectRef) {
+  // only react for Email Entity update and edit
+  if ($objectName == "Event" && $op == "create") {
+    // need to check/verify if Event is
+    if ($objectRef->is_template) {
+      // noting to do here! We don't need to create eventmessages for event templates!
+      return;
+    }
+    if (!CRM_Defaulteventmessages_Utils::is_active()) {
+      // if we are not activated again nothing to do here
+      return;
+    }
+    $new_event_id = $objectRef->id;
+    $event_template_id = CRM_Defaulteventmessages_Utils::get_configured_template_id();
+    // copy Event Message Rules and Settings from template!
+    CRM_Eventmessages_Logic::copyRules($event_template_id, $new_event_id);
+    CRM_Eventmessages_Logic::copySettings($event_template_id, $new_event_id);
+  }
+
 }
 
 // --- Functions below this ship commented out. Uncomment as required. ---

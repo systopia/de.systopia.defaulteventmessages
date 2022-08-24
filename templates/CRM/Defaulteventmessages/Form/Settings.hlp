@@ -1,0 +1,24 @@
+{*-------------------------------------------------------+
+| SYSTOPIA Defaulteventmessages Extension                |
+| Copyright (C) 2022 SYSTOPIA                            |
+| Author: P.Batroff (batroff@systopia.de)                |
++--------------------------------------------------------+
+| This program is released as free software under the    |
+| Affero GPL license. You can redistribute it and/or     |
+| modify it under the terms of this license which you    |
+| can read by viewing the included agpl.txt or online    |
+| at www.gnu.org/licenses/agpl.html. Removal of this     |
+| copyright header is strictly prohibited without        |
+| written permission from the original author(s).        |
++-------------------------------------------------------*}
+
+
+{htxt id="id-defaulteventmessages-activated"}
+  <p>{ts domain="de.systopia.defaulteventmessages"}if activated, all newly cretaed events are configured to copy the eventmessage configuration from the Event Template.t{/ts}</p>
+{/htxt}
+
+{htxt id="id-defaulteventmessages-template"}
+  <p>{ts domain="de.systopia.defaulteventmessages"}The Event template that will be used for copying the eventmessage configuration.{/ts}</p>
+{/htxt}
+
+
